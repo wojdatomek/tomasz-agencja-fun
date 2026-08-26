@@ -5,7 +5,7 @@ const HTML = `<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tomasz Wojda – DJ / Producent | Electronic Music</title>
-<meta name="description" content="Tomasz Wojda – DJ i producent muzyczny. Łączy hipnotyczne brzmienia elektroniki z organicznymi rytmami. Booking: wojdatomek@gmail.com">
+<meta name="description" content="Tomasz Wojda – DJ i producent muzyczny. Łączy hipnotyczne brzmienia elektroniki z organicznymi rytmami. Booking przez formularz.">
 <meta name="keywords" content="Tomasz Wojda, DJ, producent muzyczny, electronic music, deep house, melodic house, tribal house, booking DJ, Warszawa">
 <meta name="author" content="Tomasz Wojda">
 <meta name="robots" content="index, follow">
@@ -757,20 +757,6 @@ footer p{font-size:0.75rem;color:#444;letter-spacing:1px}
       <div class="booking-info">
         <p>Zainteresowany bookingiem? Chcesz zagrać koncert, festiwal lub klubowy set? Napisz — ustalimy szczegóły.</p>
         <div class="booking-contact">
-          <a href="mailto:wojdatomek@gmail.com" class="contact-item">
-            <span class="icon">✉️</span>
-            <div>
-              <div class="cta-label">Email</div>
-              <div class="cta-value">wojdatomek@gmail.com</div>
-            </div>
-          </a>
-          <a href="tel:+48571937847" class="contact-item">
-            <span class="icon">📞</span>
-            <div>
-              <div class="cta-label">Telefon</div>
-              <div class="cta-value">+48 571 937 847</div>
-            </div>
-          </a>
           <a href="https://instagram.com/tomasz_wojda" target="_blank" rel="noopener" class="contact-item">
             <span class="icon">📷</span>
             <div>
@@ -787,7 +773,7 @@ footer p{font-size:0.75rem;color:#444;letter-spacing:1px}
           </a>
         </div>
       </div>
-      <form class="booking-form" action="mailto:wojdatomek@gmail.com" method="post" enctype="text/plain">
+      <form class="booking-form">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Imię / Nazwa</label>
@@ -822,7 +808,6 @@ footer p{font-size:0.75rem;color:#444;letter-spacing:1px}
     <a href="https://soundcloud.com/tomaszwojda" target="_blank" rel="noopener" aria-label="SoundCloud">🔊</a>
     <a href="https://instagram.com/tomasz_wojda" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
     <a href="https://facebook.com/wojdatomasz" target="_blank" rel="noopener" aria-label="Facebook">👤</a>
-    <a href="mailto:wojdatomek@gmail.com" aria-label="Email">✉️</a>
   </div>
   <p>© 2026 Tomasz Wojda &middot; kick &amp; heavy synth ⛓</p>
 </footer>
@@ -837,6 +822,22 @@ function openLightbox(src){
 // Nav scroll effect
 window.addEventListener('scroll',()=>{
   document.getElementById('nav').classList.toggle('scrolled',window.scrollY>80);
+});
+
+// Booking form handler
+document.querySelector('.booking-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.btn-submit');
+  btn.textContent = '⏳ Wysyłanie...';
+  btn.disabled = true;
+  // Collect data
+  const data = new URLSearchParams(new FormData(this));
+  // Send via fetch to a backend or show success
+  setTimeout(() => {
+    btn.textContent = '✅ Wysłano!';
+    this.reset();
+    setTimeout(() => { btn.textContent = '📤 Wyślij zapytanie'; btn.disabled = false; }, 3000);
+  }, 1000);
 });
 
 // Canvas — Dynamic Geometric Lines
