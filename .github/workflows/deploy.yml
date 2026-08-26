@@ -25,17 +25,19 @@ jobs:
 
       - name: Deploy (dev)
         if: github.event_name == 'push' || inputs.env == 'dev'
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v3.14
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           command: deploy --env dev
+          wranglerVersion: "4.126.0"
 
       - name: Deploy (production → tomasz.agencja.fun)
         if: inputs.env == 'production'
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v3.14
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           command: deploy --env production
+          wranglerVersion: "4.126.0"
 
       - name: Deployed URLs
         run: |
