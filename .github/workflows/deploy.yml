@@ -1,0 +1,47 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - 'README.md'
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Deploy to:'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to Cloudflare Workers
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy (dev)
+        if: github.event_name == 'push' || inputs.env == 'dev'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          command: deploy --env dev
+
+      - name: Deploy (production → tomasz.agencja.fun)
+        if: inputs.env == 'production'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          command: deploy --env production
+
+      - name: Deployed URLs
+        run: |
+          echo "## 🚀 Deployment complete!" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ inputs.env }}" == "production" ]; then
+            echo "**🌍 Production:** https://tomasz.agencja.fun" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**🧪 Dev:** https://tomasz-agencja-fun-dev.wojdatomek.workers.dev" >> $GITHUB_STEP_SUMMARY
+          fi
