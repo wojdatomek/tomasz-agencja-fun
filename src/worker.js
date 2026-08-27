@@ -1,4 +1,6 @@
 // tomasz.agencja.fun — Tomasz Wojda portfolio
+import { connect } from 'cloudflare:sockets';
+
 const HTML = `<!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -825,19 +827,37 @@ window.addEventListener('scroll',()=>{
 });
 
 // Booking form handler
-document.querySelector('.booking-form')?.addEventListener('submit', function(e) {
+document.querySelector('.booking-form')?.addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = this.querySelector('.btn-submit');
+  const origText = btn.textContent;
   btn.textContent = '⏳ Wysyłanie...';
   btn.disabled = true;
-  // Collect data
-  const data = new URLSearchParams(new FormData(this));
-  // Send via fetch to a backend or show success
-  setTimeout(() => {
-    btn.textContent = '✅ Wysłano!';
-    this.reset();
-    setTimeout(() => { btn.textContent = '📤 Wyślij zapytanie'; btn.disabled = false; }, 3000);
-  }, 1000);
+
+  try {
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    data.type = document.getElementById('type')?.value || 'booking';
+
+    const resp = await fetch('/api/booking', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await resp.json();
+    if (result.success) {
+      btn.textContent = '✅ Wysłano!';
+      this.reset();
+    } else {
+      btn.textContent = '❌ Błąd';
+    }
+  } catch(e) {
+    btn.textContent = '❌ Błąd sieci';
+    console.error(e);
+  }
+
+  setTimeout(() => { btn.textContent = origText; btn.disabled = false; }, 3000);
 });
 
 // Canvas — Dynamic Geometric Lines
@@ -965,9 +985,57 @@ requestAnimationFrame(draw);
 </html>`;
 
 export default {
-  async fetch(request) {
+  async fetch(request, env) {
     const url = new URL(request.url);
 
+    // API: Handle booking form submission
+    if (url.pathname === '/api/booking' && request.method === 'POST') {
+      try {
+        const data = await request.json();
+        const { name, email, type, message } = data;
+
+        // Validate
+        if (!name || !email || !message) {
+          return new Response(JSON.stringify({ success: false, error: 'Uzupełnij wymagane pola' }), {
+            status: 400,
+            headers: { 'content-type': 'application/json' }
+          });
+        }
+
+        // Send email via SMTP
+        const emailBody = [
+          `Nowe zapytanie bookingowe z tomasz.agencja.fun`,
+          ``,
+          `Imię/Nazwa: ${name}`,
+          `Email: ${email}`,
+          `Rodzaj: ${type || 'booking'}`,
+          `Wiadomość:`,
+          message,
+          ``,
+          `---`,
+          `Wysłano z formularza na tomasz.agencja.fun`
+        ].join('\n');
+
+        await sendEmail({
+          to: 'wojdatomek@gmail.com',
+          subject: `🔊 Booking: ${name} — ${type || 'zapytanie'}`,
+          text: emailBody,
+          smtpUser: env.SMTP_USER,
+          smtpPass: env.SMTP_PASS
+        });
+
+        return new Response(JSON.stringify({ success: true }), {
+          headers: { 'content-type': 'application/json', 'access-control-allow-origin': '*' }
+        });
+      } catch (e) {
+        return new Response(JSON.stringify({ success: false, error: e.message }), {
+          status: 500,
+          headers: { 'content-type': 'application/json' }
+        });
+      }
+    }
+
+    // Serve HTML
     return new Response(HTML, {
       headers: {
         "content-type": "text/html;charset=UTF-8",
@@ -978,3 +1046,80 @@ export default {
     });
   }
 };
+
+// Helper: send email via SMTP (Hostinger) — using port 587 STARTTLS
+async function sendEmail({ to, subject, text, smtpUser, smtpPass }) {
+  const smtpHost = 'smtp.hostinger.com';
+  const smtpPort = 587;
+  const from = 'herkules@agencja.fun';
+
+  // Connect without TLS initially, then STARTTLS
+  let socket = connect({ hostname: smtpHost, port: smtpPort });
+  await socket.opened;
+
+  const encoder = new TextEncoder();
+  const decoder = new TextDecoder();
+
+  async function send(line) {
+    await socket.writable.getWriter().write(encoder.encode(line + '\r\n'));
+  }
+
+  async function expect(expectedCode) {
+    const { value } = await socket.readable.getReader().read();
+    const response = decoder.decode(value);
+    const code = parseInt(response.substring(0, 3), 10);
+    if (expectedCode && code !== expectedCode) {
+      throw new Error(`SMTP error: ${response.trim()}`);
+    }
+    return response;
+  }
+
+  // SMTP conversation with STARTTLS
+  await expect(); // banner (220)
+  await send(`EHLO tomasz.agencja.fun`);
+  await expect(250);
+  await send(`STARTTLS`);
+  await expect(220);
+
+  // Upgrade to TLS — returns a new TLS-wrapped socket
+  socket = socket.startTls();
+  await socket.opened;
+
+  // Re-send EHLO after TLS
+  await send(`EHLO tomasz.agencja.fun`);
+  await expect(250);
+
+  // Authenticate
+  await send(`AUTH LOGIN`);
+  await expect(334);
+  await send(btoa(smtpUser));
+  await expect(334);
+  await send(btoa(smtpPass));
+  await expect(235);
+
+  // Send email
+  await send(`MAIL FROM:<${from}>`);
+  await expect(250);
+  await send(`RCPT TO:<${to}>`);
+  await expect(250);
+  await send(`DATA`);
+  await expect(354);
+
+  const headers = [
+    `From: "Tomasz Wojda Booking" <${from}>`,
+    `To: <${to}>`,
+    `Subject: ${subject}`,
+    `MIME-Version: 1.0`,
+    `Content-Type: text/plain; charset=UTF-8`,
+    `Content-Transfer-Encoding: 7bit`,
+    `Date: ${new Date().toUTCString()}`,
+    '',
+  ].join('\r\n');
+
+  await send(headers + '\r\n' + text);
+  await send('.');
+  await expect(250);
+  await send(`QUIT`);
+
+  socket.close();
+}
