@@ -1,13 +1,16 @@
 name = "tomasz-agencja-fun"
 main = "src/worker.js"
-compatibility_date = "2026-08-23"
+compatibility_date = "2026-09-12"
 account_id = "7060bcc794845705d4fb6b59f879384c"
 
-# Dev: auto-deploy on push → tomasz-agencja-fun-dev.wojdatomek.workers.dev
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
 [env.dev]
 name = "tomasz-agencja-fun-dev"
 
-# Prod: on manual trigger → route on tomasz.agencja.fun
 [env.production]
 name = "tomasz-agencja-fun"
 routes = [

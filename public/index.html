@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tomasz Wojda — DJ / producent</title>
+<meta name="description" content="Tomasz Wojda. DJ i producent. Deep, melodic i tribal house. Kick i ciężki synth. Booking na kluby, festiwale i mniejsze imprezy.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tomasz.agencja.fun">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Tomasz Wojda — DJ / producent">
+<meta property="og:description" content="Deep, melodic i tribal house. Kick i ciężki synth. Booking.">
+<meta property="og:url" content="https://tomasz.agencja.fun">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://tomasz.agencja.fun/img/og.jpg">
+<meta property="og:locale" content="pl_PL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tomasz Wojda — DJ / producent">
+<meta name="twitter:image" content="https://tomasz.agencja.fun/img/og.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Tomasz Wojda","jobTitle":"DJ i producent muzyczny","url":"https://tomasz.agencja.fun","image":"https://tomasz.agencja.fun/img/og.jpg","sameAs":["https://soundcloud.com/tomaszwojda","https://instagram.com/tomasz_wojda","https://facebook.com/wojdatomasz","https://www.youtube.com/@tomaszwojda"],"genre":["Deep House","Melodic House","Tribal House","Electronic"]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500;1,9..144,600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#efe8dc;
+  --ink:#121212;
+  --club:#0b0b0c;
+  --muted:#6e675e;
+  --line:rgba(18,18,18,.14);
+  --accent:#b42318;
+  --cream:#f6f1e8;
+  --d-muted:#9a948c;
+  --d-line:rgba(246,241,232,.12);
+  --font-d:'Oswald',sans-serif;
+  --font-s:'Fraunces',Georgia,serif;
+  --font-b:'Figtree',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px}
+.skip:focus{left:8px;background:#fff;padding:8px 12px;z-index:200}
+
+nav{
+  position:fixed;inset:0 0 auto 0;z-index:40;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 28px;mix-blend-mode:difference;color:#fff;
+}
+.logo{font-family:var(--font-d);letter-spacing:.18em;font-size:.78rem;text-decoration:none;font-weight:600}
+.nav-links{display:flex;gap:22px;list-style:none}
+.nav-links a{text-decoration:none;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+.nav-links a:hover{opacity:1}
+.menu-btn{display:none;background:none;border:0;color:inherit;font-size:1.2rem;cursor:pointer}
+
+.hero{
+  min-height:100svh;
+  display:grid;
+  grid-template-columns:minmax(280px,42vw) 1fr;
+  background:var(--paper);
+}
+.hero-copy{
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:120px 36px 48px;
+  position:relative;z-index:2;
+}
+.kicker{
+  font-family:var(--font-s);font-style:italic;font-size:1.05rem;
+  color:var(--muted);margin-bottom:18px;
+}
+h1{
+  font-family:var(--font-d);font-weight:700;line-height:.86;
+  font-size:clamp(4.2rem,11vw,9.2rem);letter-spacing:-.02em;
+  text-transform:uppercase;
+}
+h1 span{display:block}
+.lede{margin-top:22px;max-width:28ch;color:var(--muted);font-size:1.02rem}
+.hero-actions{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;padding:0 22px;text-decoration:none;
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;
+}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+.hero-fig{margin:0;height:100svh;position:sticky;top:0}
+.hero-fig img{width:100%;height:100svh;object-fit:cover;object-position:58% 28%}
+
+.band{
+  background:var(--club);color:var(--cream);
+  padding:28px 36px;
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--d-muted);
+}
+.band b{color:var(--cream);font-weight:600}
+
+section{padding:88px 36px}
+.wrap{max-width:1180px;margin:0 auto}
+.label{
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:14px;font-weight:600;
+}
+h2{
+  font-family:var(--font-d);font-weight:600;text-transform:uppercase;
+  font-size:clamp(2.4rem,5vw,4.4rem);line-height:.92;letter-spacing:.01em;
+  margin-bottom:28px;
+}
+
+#bio{background:var(--paper)}
+.bio-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.bio-text{font-size:1.28rem;line-height:1.45;max-width:34ch}
+.bio-text p+p{margin-top:1em}
+.bio-aside{
+  border-top:1px solid var(--line);padding-top:18px;
+  color:var(--muted);font-size:.95rem;
+}
+.bio-aside dt{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-top:16px}
+.bio-aside dd{margin:4px 0 0}
+
+#muzyka{background:var(--club);color:var(--cream)}
+#muzyka .label{color:#e05a4f}
+#muzyka h2{color:var(--cream)}
+.track{
+  display:grid;grid-template-columns:3.2rem 1fr minmax(220px,42%);
+  gap:12px 20px;align-items:center;
+  border-top:1px solid var(--d-line);padding:18px 0;
+}
+.track:last-child{border-bottom:1px solid var(--d-line)}
+.num{font-family:var(--font-d);color:var(--d-muted);letter-spacing:.08em}
+.track h3{font-family:var(--font-s);font-weight:500;font-size:1.35rem;font-style:italic}
+.track p{color:var(--d-muted);font-size:.88rem;margin-top:2px}
+.track iframe{width:100%;height:92px;border:0}
+
+.sets{margin-top:64px}
+.set-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.set-card{border:1px solid var(--d-line);padding:0 0 16px}
+.set-card iframe{width:100%;height:166px;border:0;display:block}
+.set-card h3{font-family:var(--font-s);font-style:italic;font-size:1.15rem;padding:14px 16px 4px}
+.set-card p{color:var(--d-muted);font-size:.85rem;padding:0 16px}
+
+#foto{background:var(--club);padding-top:0}
+.gallery{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:8px;
+}
+.gallery a{display:block;overflow:hidden;background:#161616}
+.gallery img{width:100%;height:100%;object-fit:cover;filter:grayscale(.15);transition:transform .6s ease, filter .6s}
+.gallery a:hover img{transform:scale(1.04);filter:grayscale(0)}
+.g1{grid-column:span 7;grid-row:span 2;min-height:70vh}
+.g2{grid-column:span 5;min-height:34vh}
+.g3{grid-column:span 5;min-height:34vh}
+.g4{grid-column:span 4;min-height:42vh}
+.g5{grid-column:span 4;min-height:42vh}
+.g6{grid-column:span 4;min-height:42vh}
+
+#booking{background:var(--paper)}
+.book-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px}
+.book-copy p{font-size:1.15rem;max-width:34ch;margin-bottom:22px}
+.downloads{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 28px}
+.btn.file{background:transparent;color:var(--ink)}
+.socials{display:flex;flex-direction:column;gap:8px}
+.socials a{text-decoration:none;font-size:.95rem;border-bottom:1px solid transparent;width:fit-content}
+.socials a:hover{border-color:var(--ink)}
+form{display:flex;flex-direction:column;gap:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;color:var(--muted)}
+input,select,textarea{
+  width:100%;background:transparent;border:0;border-bottom:1px solid var(--ink);
+  padding:10px 0;color:var(--ink);border-radius:0;appearance:none;
+}
+textarea{min-height:120px;resize:vertical}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.form-status{min-height:1.2em;font-size:.9rem;color:var(--accent)}
+
+footer{
+  background:var(--ink);color:var(--d-muted);
+  padding:28px 36px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:.8rem;
+}
+footer a{color:var(--cream);text-decoration:none}
+
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:80;padding:24px}
+.lb.on{display:flex}
+.lb img{max-width:min(1100px,96vw);max-height:92vh;object-fit:contain}
+.lb button{position:absolute;top:16px;right:18px;background:none;border:0;color:#fff;font-size:2rem;cursor:pointer}
+
+@media (max-width:900px){
+  nav{mix-blend-mode:normal;color:var(--ink);background:linear-gradient(var(--paper),transparent)}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:58px;right:16px;background:var(--paper);padding:16px 22px;border:1px solid var(--line)}
+  .menu-btn{display:block}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-fig{height:72svh;position:relative}
+  .hero-fig img{height:72svh;object-position:55% 22%}
+  .hero-copy{padding:86px 20px 28px;order:2}
+  h1{font-size:clamp(3.4rem,18vw,5.4rem)}
+  section{padding:64px 20px}
+  .bio-grid,.book-grid,.set-grid{grid-template-columns:1fr}
+  .track{grid-template-columns:2.4rem 1fr}
+  .track iframe{grid-column:1/-1}
+  .g1,.g2,.g3,.g4,.g5,.g6{grid-column:span 12;min-height:48vh}
+  .row{grid-template-columns:1fr}
+  .band{padding:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .gallery img{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#bio">Pomiń nawigację</a>
+<nav>
+  <a class="logo" href="#top">TOMASZ WOJDA</a>
+  <button class="menu-btn" aria-label="Menu" id="menuBtn">☰</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#bio">Bio</a></li>
+    <li><a href="#muzyka">Muzyka</a></li>
+    <li><a href="#foto">Foto</a></li>
+    <li><a href="#booking">Booking</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-copy">
+    <p class="kicker">kick i ciężki synth</p>
+    <h1><span>Tomasz</span><span>Wojda</span></h1>
+    <p class="lede">DJ i producent. Deep, melodic i tribal house. Gram w klubach i na mniejszych imprezach w Polsce i Hiszpanii.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#booking">Booking</a>
+      <a class="btn ghost" href="#muzyka">Słuchaj</a>
+    </div>
+  </div>
+  <figure class="hero-fig">
+    <img src="/img/hero.jpg" alt="Tomasz Wojda, zdjęcie studyjne: głowa odchylona, włosy w ruchu" width="1600" height="1068">
+  </figure>
+</header>
+
+<div class="band">
+  <span><b>Deep house</b> · melodic · tribal</span>
+  <span>Polska / Hiszpania</span>
+  <span>Booking 2026 otwarty</span>
+</div>
+
+<section id="bio">
+  <div class="wrap bio-grid">
+    <div>
+      <p class="label">Bio</p>
+      <h2>Ciężki kick,<br>potem synth.</h2>
+      <div class="bio-text">
+        <p>Robię house, który siada w ciele, a nie tylko w feedzie. Kick ma iść w podłogę, synth ma trochę gryźć. Czasem tribal, czasem jaśniej, melodyjnie.</p>
+        <p>Sety w klubach, plenerze i na kameralnych imprezach. Polska i Hiszpania. Nie buduję wielkiej legendy — po prostu gram.</p>
+      </div>
+    </div>
+    <aside class="bio-aside">
+      <dl>
+        <dt>Gatunki</dt>
+        <dd>Deep house, melodic house, tribal house</dd>
+        <dt>Format</dt>
+        <dd>Klub, festiwal, prywatny event — 60 do 120 minut</dd>
+        <dt>Baza</dt>
+        <dd>SoundCloud /tomaszwojda</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section id="muzyka">
+  <div class="wrap">
+    <p class="label">Nagrania</p>
+    <h2>Utwory</h2>
+
+    <article class="track">
+      <span class="num">01</span>
+      <div><h3>end of war</h3><p>Ciemniejszy, wolniejszy, ciężki kick.</p></div>
+      <iframe loading="lazy" allow="encrypted-media" title="end of war" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftomaszwojda%2Fendofwar&color=%23b42318&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+    </article>
+    <article class="track">
+      <span class="num">02</span>
+      <div><h3>plum plum</h3><p>Bas i groove, trochę funkowo.</p></div>
+      <iframe loading="lazy" allow="encrypted-media" title="plum plum" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftomaszwojda%2Fplum-plum-plum&color=%23b42318&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+    </article>
+    <article class="track">
+      <span class="num">03</span>
+      <div><h3>moonday</h3><p>Senny, bardziej kosmiczny.</p></div>
+      <iframe loading="lazy" allow="encrypted-media" title="moonday" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftomaszwojda%2Fmoonday&color=%23b42318&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+    </article>
+    <article class="track">
+      <span class="num">04</span>
+      <div><h3>człowiek jest tylko mocny</h3><p>Organiczna perkusja, cieplejszy house.</p></div>
+      <iframe loading="lazy" allow="encrypted-media" title="człowiek jest tylko mocny" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftomaszwojda%2Fczlowiek-jest-tylko-mocny&color=%23b42318&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+    </article>
+    <article class="track">
+      <span class="num">05</span>
+      <div><h3>awaking</h3><p>Jaśniejsze, wschodzące.</p></div>
+      <iframe loading="lazy" allow="encrypted-media" title="awaking" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftomaszwojda%2Fawaking&color=%23b42318&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+    </article>
+    <article class="track">
+      <span class="num">06</span>
+      <div><h3>around flame</h3><p>Szybszy, bardziej palący.</p></div>
+      <iframe loading="lazy" allow="encrypted-media" title="around flame" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftomaszwojda%2Faroundflame&color=%23b42318&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+    </article>
+    <article class="track">
+      <span class="num">07</span>
+      <div><h3>i need to feel</h3><p>Klub, energia.</p></div>
+      <iframe loading="lazy" allow="encrypted-media" title="i need to feel" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftomaszwojda%2Fi-need-to-feel&color=%23b42318&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+    </article>
+
+    <div class="sets">
+      <p class="label">Sety</p>
+      <h2>DJ sety</h2>
+      <div class="set-grid">
+        <article class="set-card">
+          <iframe loading="lazy" allow="encrypted-media" title="Elementy" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftomaszwojda%2Felementy&color=%23b42318&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+          <h3>Elementy</h3>
+          <p>Deephouse set</p>
+        </article>
+        <article class="set-card">
+          <iframe loading="lazy" allow="encrypted-media" title="Antiquario Cafe" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftomaszwojda%2Fantiquario-djset&color=%23b42318&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+          <h3>Antiquario Cafe</h3>
+          <p>Torre del Mar, 26.04.2025</p>
+        </article>
+        <article class="set-card">
+          <iframe loading="lazy" allow="encrypted-media" title="Warsaw Bridge Boombox" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Ftomaszwojda%2Fwarsaw-bridge-boombox-deep-house-mashup-tomasz-wojda&color=%23b42318&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+          <h3>Warsaw Bridge Boombox</h3>
+          <p>House mashup</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="foto">
+  <div class="wrap" style="margin-bottom:18px">
+    <p class="label">Galeria</p>
+    <h2>Foto</h2>
+  </div>
+  <div class="gallery">
+    <a class="g1" href="/img/g1.jpg" data-lb><img src="/img/g1.jpg" alt="Portret, ręka we włosach" width="1391" height="2100"></a>
+    <a class="g2" href="/img/g2.jpg" data-lb><img src="/img/g2.jpg" alt="Za mixerem, set na żywo" width="1400" height="1866"></a>
+    <a class="g3" href="/img/g6.jpg" data-lb><img src="/img/g6.jpg" alt="DJ booth, czarno-białe" width="1000" height="1333"></a>
+    <a class="g4" href="/img/g5.jpg" data-lb><img src="/img/g5.jpg" alt="Portret, śmiech" width="1400" height="1866"></a>
+    <a class="g5" href="/img/g4.jpg" data-lb><img src="/img/g4.jpg" alt="Sesja studyjna, siedzący portret" width="853" height="1280"></a>
+    <a class="g6" href="/img/g3.jpg" data-lb><img src="/img/g3.jpg" alt="Sesja studyjna, cała sylwetka" width="853" height="1280"></a>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="wrap book-grid">
+    <div class="book-copy">
+      <p class="label">Kontakt</p>
+      <h2>Booking</h2>
+      <p>Chcesz set do klubu, na festiwal albo prywatną imprezę? Napisz. Odpowiadam sam.</p>
+      <div class="downloads">
+        <a class="btn file" href="/files/press-pack.pdf" download>Press pack (PDF)</a>
+        <a class="btn file" href="/files/press-pack.zip" download>Press pack (ZIP)</a>
+        <a class="btn file" href="/files/raider.pdf" download>Tech rider</a>
+      </div>
+      <div class="socials">
+        <a href="https://instagram.com/tomasz_wojda" target="_blank" rel="noopener">Instagram @tomasz_wojda</a>
+        <a href="https://soundcloud.com/tomaszwojda" target="_blank" rel="noopener">SoundCloud /tomaszwojda</a>
+        <a href="https://www.youtube.com/@tomaszwojda" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <form id="bookingForm" novalidate>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off">
+      <div class="row">
+        <div>
+          <label for="name">Imię / nazwa</label>
+          <input id="name" name="name" required autocomplete="name" placeholder="Klub / promotor">
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="kontakt@klub.pl">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="type">Rodzaj</label>
+          <select id="type" name="type">
+            <option value="booking">Booking — koncert / set</option>
+            <option value="collab">Kolaboracja</option>
+            <option value="other">Inne</option>
+          </select>
+        </div>
+        <div>
+          <label for="date">Data (opcjonalnie)</label>
+          <input id="date" name="date" type="text" placeholder="np. 12.10.2026">
+        </div>
+      </div>
+      <div>
+        <label for="city">Miasto / miejsce</label>
+        <input id="city" name="city" placeholder="Warszawa, klub…">
+      </div>
+      <div>
+        <label for="message">Wiadomość</label>
+        <textarea id="message" name="message" required placeholder="Data, miejsce, długość setu, budżet jeśli jest."></textarea>
+      </div>
+      <button class="btn" type="submit" id="sendBtn">Wyślij zapytanie</button>
+      <p class="form-status" id="formStatus" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Tomasz Wojda</span>
+  <span>kick i ciężki synth</span>
+  <a href="https://soundcloud.com/tomaszwojda" target="_blank" rel="noopener">SoundCloud</a>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" hidden>
+  <button type="button" aria-label="Zamknij" id="lbClose">×</button>
+  <img id="lbImg" alt="">
+</div>
+
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn');
+  var links=document.getElementById('navLinks');
+  btn.addEventListener('click', function(){ links.classList.toggle('open'); });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ links.classList.remove('open'); });
+  });
+
+  var lb=document.getElementById('lb');
+  var lbImg=document.getElementById('lbImg');
+  document.querySelectorAll('[data-lb]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      lbImg.src=a.getAttribute('href');
+      lb.classList.add('on');
+      lb.hidden=false;
+    });
+  });
+  function closeLb(){ lb.classList.remove('on'); lb.hidden=true; lbImg.src=''; }
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e){ if(e.target===lb) closeLb(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLb(); });
+
+  var form=document.getElementById('bookingForm');
+  var statusEl=document.getElementById('formStatus');
+  var sendBtn=document.getElementById('sendBtn');
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    statusEl.textContent='';
+    if(!form.reportValidity()) return;
+    sendBtn.disabled=true;
+    var orig=sendBtn.textContent;
+    sendBtn.textContent='Wysyłanie…';
+    try{
+      var data=Object.fromEntries(new FormData(form).entries());
+      var resp=await fetch('/api/booking', {
+        method:'POST',
+        headers:{'content-type':'application/json'},
+        body:JSON.stringify(data)
+      });
+      var result=await resp.json();
+      if(result.success){
+        statusEl.textContent='Wysłane. Odezwę się.';
+        form.reset();
+      } else {
+        statusEl.textContent=result.error || 'Nie poszło. Spróbuj jeszcze raz albo napisz na IG.';
+      }
+    } catch(err){
+      statusEl.textContent='Błąd sieci. Napisz na Instagramie @tomasz_wojda.';
+    }
+    sendBtn.disabled=false;
+    sendBtn.textContent=orig;
+  });
+})();
+</script>
+</body>
+</html>
