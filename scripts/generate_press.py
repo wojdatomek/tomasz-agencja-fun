@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 
-ROOT = Path("/opt/data/home/projects/tomasz-agencja-fun")
+ROOT = Path(__file__).resolve().parents[1]
 IMG = ROOT / "public" / "img"
 OUT = ROOT / "public" / "files"
 FONT_SANS = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
