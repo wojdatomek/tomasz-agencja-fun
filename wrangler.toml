@@ -6,7 +6,14 @@ account_id = "7060bcc794845705d4fb6b59f879384c"
 [assets]
 directory = "./public"
 binding = "ASSETS"
-run_worker_first = ["/api/*"]
+run_worker_first = [
+  "/api/*",
+  "/files/press-pack.pdf",
+  "/files/press-pack-en.pdf",
+  "/files/raider.pdf",
+  "/files/raider-en.pdf",
+  "/files/press-pack.zip",
+]
 
 [env.dev]
 name = "tomasz-agencja-fun-dev"

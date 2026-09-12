@@ -261,9 +261,9 @@ def press(lang):
         y += 70
     y += 20
     note = (
-        "Zdjęcia i ten press pack: do użytku przy bookingu i w mediach, z podpisem Tomasz Wojda. Bez telefonu i maila w pliku — wszystko przez stronę."
+        "Zdjęcia i ten press pack: do użytku przy bookingu i w mediach, z podpisem Tomasz Wojda. Bez telefonu i maila w pliku — wszystko przez stronę. Guest +1, parking i rec setu: w riderze."
         if pl
-        else "Photos and this press pack: for booking and media, credit Tomasz Wojda. No phone or email in the file — everything goes through the site."
+        else "Photos and this press pack: for booking and media, credit Tomasz Wojda. No phone or email in the file — everything goes through the site. Plus-one, parking and set rec: see the rider."
     )
     for line in wrap(d, note, font(FONT_SANS, 22), W - 2 * M):
         text(d, (M, y), line, font(FONT_SANS, 22), MUTED)
@@ -317,6 +317,7 @@ def rider(lang):
                 "Setup A — laptop",
                 [
                     "MacBook Pro + kontroler Traktor (Native Instruments).",
+                    "Model kontrolera potwierdzam przed eventem.",
                     "Miejsce na laptopa i kontroler na stole 110 cm.",
                     "Do mixera klubowego: 2× RCA albo 2× TS / combo.",
                 ],
@@ -345,6 +346,7 @@ def rider(lang):
                 "Setup A — laptop",
                 [
                     "MacBook Pro + Traktor controller (Native Instruments).",
+                    "Controller model confirmed before the event.",
                     "Space on the 110 cm table for laptop and controller.",
                     "To the house mixer: 2× RCA or 2× TS / combo.",
                 ],
@@ -394,6 +396,14 @@ def rider(lang):
                 ],
             ),
             (
+                "Goście, rec, parking",
+                [
+                    "Plus jeden na guestliście.",
+                    "Parking przy lokalu, jeśli dojazd autem.",
+                    "Nagranie setu (USB / FOH) tylko po wcześniejszym uzgodnieniu.",
+                ],
+            ),
+            (
                 "Uwagi",
                 [
                     "Rider jest bazą — szczegóły dogrywamy pod salę.",
@@ -430,6 +440,14 @@ def rider(lang):
                 ],
             ),
             (
+                "Guests, rec, parking",
+                [
+                    "Plus one on the guest list.",
+                    "Parking at the venue if arriving by car.",
+                    "Set recording (USB / FOH) only if agreed in advance.",
+                ],
+            ),
+            (
                 "Notes",
                 [
                     "This rider is a baseline — we adjust to the room.",
@@ -440,18 +458,7 @@ def rider(lang):
             ),
         ]
     )
-    fb = font(FONT_SANS, 26)
-    fh = font(FONT_BOLD, 28)
-    for title, bullets in blocks:
-        text(d, (M, y), title.upper(), fh, ACCENT)
-        y += 42
-        for b in bullets:
-            lines = wrap(d, b, fb, W - 2 * M - 36)
-            for i, line in enumerate(lines):
-                text(d, (M, y), ("–  " if i == 0 else "   ") + line, fb, INK)
-                y += 36
-            y += 8
-        y += 22
+    draw_blocks(d, y, blocks, font(FONT_SANS, 22), font(FONT_BOLD, 22), gap=3)
     footer(d, page="02", mark="RIDER")
     pages.append(im)
     return pages
@@ -459,19 +466,19 @@ def rider(lang):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    save_pdf(press("pl"), OUT / "press-pack.pdf")
-    save_pdf(press("en"), OUT / "press-pack-en.pdf")
-    save_pdf(rider("pl"), OUT / "raider.pdf")
-    save_pdf(rider("en"), OUT / "raider-en.pdf")
+    save_pdf(press("pl"), OUT / "press-pack_tomaszwojda.pdf")
+    save_pdf(press("en"), OUT / "press-pack-en_tomaszwojda.pdf")
+    save_pdf(rider("pl"), OUT / "raider_tomaszwojda.pdf")
+    save_pdf(rider("en"), OUT / "raider-en_tomaszwojda.pdf")
 
     import zipfile
 
-    zpath = OUT / "press-pack.zip"
+    zpath = OUT / "press-pack_tomaszwojda.zip"
     with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
-        z.write(OUT / "press-pack.pdf", "Tomasz_Wojda_Press_Pack_PL.pdf")
-        z.write(OUT / "press-pack-en.pdf", "Tomasz_Wojda_Press_Pack_EN.pdf")
-        z.write(OUT / "raider.pdf", "Tomasz_Wojda_Tech_Rider_PL.pdf")
-        z.write(OUT / "raider-en.pdf", "Tomasz_Wojda_Tech_Rider_EN.pdf")
+        z.write(OUT / "press-pack_tomaszwojda.pdf", "press-pack_tomaszwojda.pdf")
+        z.write(OUT / "press-pack-en_tomaszwojda.pdf", "press-pack-en_tomaszwojda.pdf")
+        z.write(OUT / "raider_tomaszwojda.pdf", "raider_tomaszwojda.pdf")
+        z.write(OUT / "raider-en_tomaszwojda.pdf", "raider-en_tomaszwojda.pdf")
         z.write(IMG / "hero.jpg", "photos/hero.jpg")
         z.write(IMG / "g1.jpg", "photos/portrait.jpg")
         z.write(IMG / "g2.jpg", "photos/dj-set.jpg")

@@ -123,6 +123,17 @@ export default {
       }
     }
 
+    const redirects = {
+      "/files/press-pack.pdf": "/files/press-pack_tomaszwojda.pdf",
+      "/files/press-pack-en.pdf": "/files/press-pack-en_tomaszwojda.pdf",
+      "/files/raider.pdf": "/files/raider_tomaszwojda.pdf",
+      "/files/raider-en.pdf": "/files/raider-en_tomaszwojda.pdf",
+      "/files/press-pack.zip": "/files/press-pack_tomaszwojda.zip",
+    };
+    if (redirects[url.pathname]) {
+      return Response.redirect(url.origin + redirects[url.pathname], 301);
+    }
+
     if (url.pathname.startsWith("/api/")) {
       return json({ error: "not found" }, 404);
     }
