@@ -205,6 +205,27 @@ footer{
   font-size:.8rem;
 }
 footer a{color:var(--cream);text-decoration:none}
+html.consent-lock,body.consent-lock{overflow:hidden;touch-action:none}
+.consent{
+  position:fixed;inset:0;z-index:90;
+  display:none;align-items:center;justify-content:center;
+  padding:max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  background:rgba(11,11,12,.88);
+}
+.consent.is-on{display:flex}
+.consent__panel{width:min(440px,100%);max-height:100%;overflow:auto;background:var(--paper);color:var(--ink);padding:28px 24px 22px}
+.consent__kicker{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.consent__title{font-family:var(--font-d);font-weight:600;font-size:clamp(1.6rem,7vw,2.2rem);letter-spacing:.04em;line-height:1;margin:10px 0 14px;text-transform:uppercase}
+.consent__copy{font-size:1.02rem;line-height:1.45;margin-bottom:22px;color:var(--muted)}
+.consent__row{display:flex;flex-direction:column;gap:10px}
+.consent button{
+  font-family:var(--font-d);font-weight:600;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--ink);background:var(--ink);color:var(--paper);
+  min-height:56px;width:100%;padding:14px 16px;cursor:pointer;
+}
+.consent button[data-consent="yes"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.consent button.ghost{background:transparent;color:var(--ink)}
+.consent__more{display:block;margin-top:14px;text-align:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:80;padding:24px}
 .lb.on{display:flex}
@@ -447,6 +468,7 @@ footer a{color:var(--cream);text-decoration:none}
 
 <footer>
   <span>© 2026 Tomasz Wojda</span>
+  <a href="/prywatnosc/">Prywatność</a>
   <span>kick &amp; heavy synth</span>
   <div class="icon-row">
     <a class="icon-link" href="https://instagram.com/tomasz_wojda" target="_blank" rel="noopener" aria-label="Instagram">
@@ -517,6 +539,59 @@ footer a{color:var(--cream);text-decoration:none}
     sendBtn.disabled=false;
     sendBtn.textContent=orig;
   });
+})();
+</script>
+<script>
+(function(){
+  var GA = "G-KE8PG4PMGB";
+  var KEY = "tomasz_ga_consent_v1";
+  function stored(){ try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function save(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function loadGA(){
+    if (!GA || window.__gaLoaded) return;
+    window.__gaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag("js", new Date());
+    gtag("config", GA, { anonymize_ip: true, send_page_view: true });
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA);
+    document.head.appendChild(s);
+  }
+  function closeConsent(bar){
+    bar.classList.remove("is-on");
+    document.documentElement.classList.remove("consent-lock");
+    document.body.classList.remove("consent-lock");
+  }
+  if (stored() === "yes") loadGA();
+  if (stored()) return;
+  var bar = document.createElement("div");
+  bar.id = "consent";
+  bar.className = "consent is-on";
+  bar.setAttribute("role", "dialog");
+  bar.setAttribute("aria-modal", "true");
+  bar.setAttribute("aria-labelledby", "consent-title");
+  bar.setAttribute("aria-describedby", "consent-copy");
+  bar.innerHTML =
+    '<div class="consent__panel">' +
+      '<p class="consent__kicker">Analityka</p>' +
+      '<h2 class="consent__title" id="consent-title">Zgoda na Google Analytics</h2>' +
+      '<p class="consent__copy" id="consent-copy">Liczy odsłony tej strony. Bez zgody działa tak samo — zero skryptu Google.</p>' +
+      '<div class="consent__row">' +
+        '<button type="button" data-consent="yes">Zgoda</button>' +
+        '<button type="button" class="ghost" data-consent="no">Bez analityki</button>' +
+      '</div>' +
+      '<a class="consent__more" href="/prywatnosc/">Prywatność</a>' +
+    '</div>';
+  document.body.appendChild(bar);
+  document.documentElement.classList.add("consent-lock");
+  document.body.classList.add("consent-lock");
+  var yes = bar.querySelector("[data-consent='yes']");
+  yes.addEventListener("click", function(){ save("yes"); closeConsent(bar); loadGA(); });
+  bar.querySelector("[data-consent='no']").addEventListener("click", function(){ save("no"); closeConsent(bar); });
+  var coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+  if (!coarse) yes.focus();
 })();
 </script>
 </body>

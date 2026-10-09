@@ -64,6 +64,10 @@ Sekrety **tylko** w Cloudflare Worker (nie w git):
 
 Honeypot: pole `website`.
 
+## Analityka
+
+Ten sam GA4 co hub: `G-KE8PG4PMGB`. Skrypt ładuje się dopiero po zgodzie (`tomasz_ga_consent_v1`). Bez zgody Google się nie uruchamia. Szczegóły: `/prywatnosc/`.
+
 ## SEO (stan)
 
 Zrobione:
