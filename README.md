@@ -66,7 +66,7 @@ Honeypot: pole `website`.
 
 ## Analityka
 
-Ten sam GA4 co hub: `G-KE8PG4PMGB`. Skrypt ładuje się dopiero po zgodzie (`tomasz_ga_consent_v1`). Bez zgody Google się nie uruchamia. Szczegóły: `/prywatnosc/`.
+Ten sam GA4 co hub: `G-KE8PG4PMGB`. Skrypt ładuje się dopiero po zgodzie (`tomasz_ga_consent_v2`). Tekst prosi osobiście, nadal mówi że to zgoda i że bez niej strona działa tak samo. Szczegóły: `/prywatnosc/`.
 
 ## SEO (stan)
 

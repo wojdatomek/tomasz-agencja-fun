@@ -1,6 +1,6 @@
 (function () {
   var GA = "G-KE8PG4PMGB";
-  var KEY = "tomasz_ga_consent_v1";
+  var KEY = "tomasz_ga_consent_v2";
   function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
   function save(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
   function loadGA() {
@@ -31,9 +31,9 @@
   bar.setAttribute("aria-describedby", "consent-copy");
   bar.innerHTML =
     '<div class="consent__panel">' +
-      '<p class="consent__kicker">Analityka</p>' +
-      '<h2 class="consent__title" id="consent-title">Zgoda na Google Analytics</h2>' +
-      '<p class="consent__copy" id="consent-copy">Liczy odsłony tej strony. Bez zgody działa tak samo — zero skryptu Google.</p>' +
+      '<p class="consent__kicker">Od Tomasza</p>' +
+      '<h2 class="consent__title" id="consent-title">Proszę o zgodę</h2>' +
+      '<p class="consent__copy" id="consent-copy">To zgoda na Google Analytics. Proszę o nią, bo te liczby nam pomagają — widzę, co na stronie żyje. Bez zgody wszystko działa tak samo.</p>' +
       '<div class="consent__row">' +
         '<button type="button" data-consent="yes">Zgoda</button>' +
         '<button type="button" class="ghost" data-consent="no">Bez analityki</button>' +
